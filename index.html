@@ -50,7 +50,6 @@
       <a href="#about">Sobre mí</a>
       <a href="#services">Servicios</a>
       <a href="#portfolio">Proyectos</a>
-      <a href="#testimonials">Testimonios</a>
       <a href="#contact" class="nav__cta">Solicitar</a>
     </nav>
   </header>
@@ -197,70 +196,80 @@
   </section>
 
   <!-- PROYECTOS -->
-  <section id="portfolio" class="section">
+  <section id="portfolio" class="section section--portfolio">
     <div class="container">
       <div class="section-head" data-aos="fade-up">
-        <span class="eyebrow">Proyectos</span>
-        <h2 class="section-title">Ideas en <span class="accent-green">construcción</span></h2>
-        <p class="section-sub">Estos son mockups y conceptos generados con IA. Los proyectos reales se sumarán aquí muy pronto.</p>
+        <span class="eyebrow">Portafolio</span>
+        <h2 class="section-title">
+          Trabajos <span class="gradient-text">en vivo</span>
+        </h2>
+        <p class="section-sub">Cada proyecto es una landing real, funcional y navegable. Explora las demos.</p>
       </div>
 
-      <div class="portfolio__grid">
-        <article class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-card__thumb project-card__thumb--1">
-            <span class="project-card__tag">Demo</span>
+      <!-- Proyecto destacado -->
+      <a href="portafolio/valderrama-ochoa/index.html" target="_blank" rel="noopener"
+         class="pf-featured" data-aos="fade-up">
+        <div class="pf-featured__meta">
+          <span class="pf-index">01 / Featured</span>
+          <span class="pf-tag pf-tag--live">● En vivo</span>
+        </div>
+
+        <div class="pf-featured__body">
+          <div class="pf-featured__text">
+            <span class="pf-category">Firma corporativa · Landing ejecutiva</span>
+            <h3 class="pf-featured__title">Valderrama <span class="pf-amp">&amp;</span> Ochoa</h3>
+            <p>Landing para una firma de abogados corporativos. Diseño ejecutivo en blanco y negro con acento dorado, transición de tema por scroll y contadores animados.</p>
+            <ul class="pf-featured__stack">
+              <li>HTML/CSS/JS</li>
+              <li>Scroll animations</li>
+              <li>Playfair + Inter</li>
+              <li>Responsive</li>
+            </ul>
+            <span class="pf-cta">Ver proyecto <span class="pf-cta__arrow">→</span></span>
           </div>
-          <div class="project-card__body">
-            <h3>Landing SaaS</h3>
-            <p>Landing conceptual para una startup de productividad con IA.</p>
+
+          <!-- Preview tipo browser mockup -->
+          <div class="pf-preview">
+            <div class="pf-preview__bar">
+              <span></span><span></span><span></span>
+              <div class="pf-preview__url">valderramaochoa.com</div>
+            </div>
+            <div class="pf-preview__screen">
+              <div class="pf-preview__brand">Valderrama <span class="pf-preview__amp">&amp;</span> Ochoa</div>
+              <div class="pf-preview__tagline">Estrategia legal para decisiones que importan.</div>
+              <div class="pf-preview__stat">USD <span class="pf-preview__gold">$15M</span></div>
+              <div class="pf-preview__label">Facturación anual</div>
+              <div class="pf-preview__btn">Agendar consulta</div>
+            </div>
           </div>
+        </div>
+      </a>
+
+      <!-- Grid de próximos proyectos -->
+      <div class="pf-grid">
+        <article class="pf-card pf-card--coming" data-aos="fade-up" data-aos-delay="0">
+          <span class="pf-card__index">02</span>
+          <div class="pf-card__glow pf-card__glow--pink"></div>
+          <h3>Landing SaaS</h3>
+          <p>Startup de productividad con IA · dark UI y animaciones GSAP.</p>
+          <span class="pf-tag">Próximamente</span>
         </article>
 
-        <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-card__thumb project-card__thumb--2">
-            <span class="project-card__tag">Demo</span>
-          </div>
-          <div class="project-card__body">
-            <h3>Portafolio Creativo</h3>
-            <p>Diseño oscuro con acentos neón para artistas digitales.</p>
-          </div>
+        <article class="pf-card pf-card--coming" data-aos="fade-up" data-aos-delay="100">
+          <span class="pf-card__index">03</span>
+          <div class="pf-card__glow pf-card__glow--cyan"></div>
+          <h3>Portafolio Creativo</h3>
+          <p>Diseño oscuro con acentos neón para artistas digitales.</p>
+          <span class="pf-tag">Próximamente</span>
         </article>
 
-        <article class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-card__thumb project-card__thumb--3">
-            <span class="project-card__tag">Próximamente</span>
-          </div>
-          <div class="project-card__body">
-            <h3>E-commerce Mini</h3>
-            <p>Tienda ligera con pedidos vía WhatsApp para negocios locales.</p>
-          </div>
+        <article class="pf-card pf-card--coming" data-aos="fade-up" data-aos-delay="200">
+          <span class="pf-card__index">04</span>
+          <div class="pf-card__glow pf-card__glow--green"></div>
+          <h3>E-commerce Mini</h3>
+          <p>Catálogo ligero con pedidos por WhatsApp para negocios locales.</p>
+          <span class="pf-tag">Próximamente</span>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section id="testimonials" class="section">
-    <div class="container">
-      <div class="section-head" data-aos="fade-up">
-        <span class="eyebrow">Testimonios</span>
-        <h2 class="section-title">Lo que dirán mis <span class="accent-cyan">próximos clientes</span></h2>
-        <p class="section-sub">Placeholder honesto: aún no tengo reseñas. Sé el primero y aparecerás aquí.</p>
-      </div>
-
-      <div class="testimonials__grid">
-        <blockquote class="testimonial" data-aos="fade-up" data-aos-delay="0">
-          <p>"Espacio reservado para tu opinión. ¿Trabajamos juntos y la ponemos aquí?"</p>
-          <footer>— Tu nombre · Tu marca</footer>
-        </blockquote>
-        <blockquote class="testimonial" data-aos="fade-up" data-aos-delay="100">
-          <p>"Este lugar es para ti. Cuéntale al mundo cómo fue trabajar con Just King."</p>
-          <footer>— Tu nombre · Tu marca</footer>
-        </blockquote>
-        <blockquote class="testimonial" data-aos="fade-up" data-aos-delay="200">
-          <p>"Los primeros testimonios son los más valiosos. Este podría ser el tuyo."</p>
-          <footer>— Tu nombre · Tu marca</footer>
-        </blockquote>
       </div>
     </div>
   </section>
