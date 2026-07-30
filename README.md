@@ -64,13 +64,13 @@ git push -u origin main
 
 ## ⚙️ Configuración obligatoria antes de publicar
 
-Abre `index.html` y busca/reemplaza estos 3 marcadores:
+Marcadores ya configurados en `index.html`:
 
-| Marcador | Dónde | Cómo obtenerlo |
+| Marcador | Dónde | Estado |
 |---|---|---|
-| `TU_ID_DE_FORMSPREE` | Atributo `action` del formulario de contacto | Crea una cuenta gratuita en https://formspree.io → nuevo formulario → copia el ID (te dan una URL tipo `https://formspree.io/f/xxxxxxx`). Pega solo el ID después de `/f/`. |
-| `TU_USUARIO_BMC` | URL del botón "Cómprame un café" | Crea tu cuenta en https://www.buymeacoffee.com → tu URL será `buymeacoffee.com/tu_usuario`. Reemplaza solo `TU_USUARIO_BMC`. |
-| Número de WhatsApp | Aparece 2 veces: en el botón del formulario y en el botón flotante | Ya está configurado con `+57 3237350147`. Si cambia, busca `573237350147` y reemplázalo (sin `+` ni espacios). |
+| Formspree | Atributo `action` del formulario de contacto | ✅ Configurado (`formspree.io/f/mykrawwd`) |
+| Ko-fi | URL del botón "Cómprame un café" | ✅ Configurado (`ko-fi.com/just_king`) |
+| Número de WhatsApp | Aparece 2 veces: en el botón del formulario y en el botón flotante | ✅ Configurado (`+57 323 735 0147`). Si cambia, busca `573237350147` y reemplázalo (sin `+` ni espacios). |
 
 Guarda, haz commit y push. GitHub Pages actualizará el sitio automáticamente en unos segundos.
 
