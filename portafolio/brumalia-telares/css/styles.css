@@ -41,7 +41,11 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Transición del color de fondo cuando cambia de sección (via JS) */
+  transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* html hereda el color de body para que el "overscroll" en móvil no muestre blanco */
+html { background: var(--cream); transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
@@ -156,7 +160,7 @@ em { font-style: italic; }
   min-height: 100vh;
   padding: calc(var(--nav-h) + 80px) 32px 100px;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
+  /* fondo removido: lo aporta body (que transiciona por sección) */
 }
 .hero__weave {
   position: absolute;
@@ -353,11 +357,9 @@ em { font-style: italic; }
    ========================================================= */
 .marquee {
   overflow: hidden;
-  background: var(--terracotta);
   color: var(--cream);
   padding: 22px 0;
-  border-top: 1px solid var(--rust);
-  border-bottom: 1px solid var(--rust);
+  /* fondo removido: lo aporta body */
 }
 .marquee__track {
   display: flex;
@@ -477,11 +479,11 @@ em { font-style: italic; }
    COLECCIONES — scroll horizontal editorial sobre fondo oscuro
    ========================================================= */
 .colecciones {
-  background: var(--forest);
   color: var(--cream);
   padding: 120px 0 130px;
   overflow: hidden;
   position: relative;
+  /* fondo removido: lo aporta body */
 }
 .colecciones::before {
   content: "";
@@ -620,7 +622,7 @@ em { font-style: italic; }
 /* =========================================================
    PROCESO — timeline sticky editorial
    ========================================================= */
-.proceso { padding: 140px 0 130px; background: var(--cream); }
+.proceso { padding: 140px 0 130px; }
 .proceso__grid {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -678,7 +680,6 @@ em { font-style: italic; }
    ========================================================= */
 .testimonios {
   padding: 130px 0;
-  background: var(--bone);
   position: relative;
 }
 .testimonios__grid {
@@ -740,7 +741,7 @@ em { font-style: italic; }
 /* =========================================================
    EQUIPO — layout editorial magazine
    ========================================================= */
-.equipo { padding: 140px 0 120px; background: var(--cream); }
+.equipo { padding: 140px 0 120px; }
 .equipo__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -818,7 +819,6 @@ em { font-style: italic; }
    CLIENTES — banda inferior con marquee suave
    ========================================================= */
 .clientes {
-  background: var(--charcoal);
   color: var(--cream);
   padding: 30px 0;
   display: flex;
@@ -853,7 +853,6 @@ em { font-style: italic; }
    CTA — encargo sobre terracota vibrante
    ========================================================= */
 .cta {
-  background: var(--terracotta);
   color: var(--cream);
   padding: 130px 0;
   position: relative;
@@ -977,7 +976,6 @@ em { font-style: italic; }
    FOOTER
    ========================================================= */
 .foot {
-  background: var(--forest-deep);
   color: var(--cream);
   padding: 70px 0 40px;
 }

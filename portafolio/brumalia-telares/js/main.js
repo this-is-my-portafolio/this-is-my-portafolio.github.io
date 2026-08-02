@@ -77,6 +77,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
+     Background dinámico por sección
+     -----------------------------------------------------
+     Cada sección lleva data-bg="#hex". Un IntersectionObserver
+     con una banda estrecha en el centro del viewport detecta
+     qué sección está siendo mirada y aplica su color al body,
+     que transiciona suavemente (transition en CSS).
+     El fondo se ve "estático" porque nunca scrollea con la
+     información — solo cambia de color al cambiar de sección.
+     ===================================================== */
+  const bgSections = document.querySelectorAll("[data-bg]");
+  if (bgSections.length) {
+    const applyBg = (el) => {
+      const bg = el.dataset.bg;
+      if (!bg) return;
+      document.body.style.backgroundColor = bg;
+      document.documentElement.style.backgroundColor = bg;
+    };
+
+    const bgObs = new IntersectionObserver((entries) => {
+      // De todas las que están intersectando ahora, elegimos la primera
+      // (que en la práctica es la que cruza la línea central del viewport).
+      const active = entries.filter((e) => e.isIntersecting);
+      if (active.length) applyBg(active[0].target);
+    }, {
+      // Banda de 2% en el centro vertical del viewport
+      rootMargin: "-49% 0px -49% 0px",
+      threshold: 0
+    });
+
+    bgSections.forEach((s) => bgObs.observe(s));
+
+    // Estado inicial: si el usuario recarga con scroll en medio de la página,
+    // aplicamos manualmente el color de la sección más cercana al centro.
+    const initBg = () => {
+      const mid = window.innerHeight / 2;
+      let best = null, bestDist = Infinity;
+      bgSections.forEach((s) => {
+        const r = s.getBoundingClientRect();
+        const secMid = r.top + r.height / 2;
+        const dist = Math.abs(secMid - mid);
+        if (dist < bestDist) { bestDist = dist; best = s; }
+      });
+      if (best) applyBg(best);
+    };
+    initBg();
+  }
+
+  /* =====================================================
      Parallax sutil en el weave del hero (respetando reduce-motion)
      ===================================================== */
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
