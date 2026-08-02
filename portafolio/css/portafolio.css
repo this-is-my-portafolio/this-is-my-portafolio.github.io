@@ -644,6 +644,11 @@ h1, h2, h3 {
   color: var(--text);
 }
 .work-card__status { color: var(--dim); }
+.work-card__status--live {
+  color: var(--green);
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+a.work-card { cursor: pointer; display: flex; flex-direction: column; }
 .work-card__cat {
   display: inline-block;
   font-family: var(--f-mono);
