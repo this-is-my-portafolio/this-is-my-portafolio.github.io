@@ -88,11 +88,25 @@ document.addEventListener("DOMContentLoaded", () => {
      ===================================================== */
   const bgSections = document.querySelectorAll("[data-bg]");
   if (bgSections.length) {
+    // Luminancia percibida (0..1) para decidir si el fondo es claro u oscuro.
+    // Fórmula ITU-R BT.601 (rápida y suficiente para este caso).
+    const luminance = (hex) => {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    };
+
     const applyBg = (el) => {
       const bg = el.dataset.bg;
       if (!bg) return;
       document.body.style.backgroundColor = bg;
       document.documentElement.style.backgroundColor = bg;
+      // Cambia el tema del nav (logo + hamburger) para que contraste
+      // con el fondo actual de la página.
+      const dark = luminance(bg) < 0.5;
+      document.body.classList.toggle("bg-dark", dark);
+      document.body.classList.toggle("bg-light", !dark);
     };
 
     const bgObs = new IntersectionObserver((entries) => {
