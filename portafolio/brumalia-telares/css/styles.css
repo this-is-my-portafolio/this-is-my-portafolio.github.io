@@ -42,10 +42,10 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   /* Transición del color de fondo cuando cambia de sección (via JS) */
-  transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 1.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* html hereda el color de body para que el "overscroll" en móvil no muestre blanco */
-html { background: var(--cream); transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+html { background: var(--cream); transition: background-color 1.1s cubic-bezier(0.4, 0, 0.2, 1); }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
