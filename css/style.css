@@ -265,16 +265,51 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .btn--block { width: 100%; }
 
-.btn--bmc {
-  background: var(--pink);
-  color: var(--black);
-  font-weight: 600;
-  padding: 16px 34px;
-  font-size: 1.05rem;
+/* Botón "Buy me a coffee" con morph a "Give me a kidney" en hover */
+.btn-morph {
+  position: relative;
+  display: inline-block;
+  width: 320px;
+  max-width: 88vw;
+  aspect-ratio: 900 / 450;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-.btn--bmc:hover {
+.btn-morph:hover,
+.btn-morph:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255, 0, 200, 0.45);
+  box-shadow: 0 10px 34px rgba(255, 190, 60, 0.35);
+}
+.btn-morph__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity .55s ease, transform .55s ease, filter .55s ease;
+}
+.btn-morph__img--a {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+.btn-morph__img--b {
+  opacity: 0;
+  transform: scale(1.12);
+  filter: blur(10px);
+}
+.btn-morph:hover .btn-morph__img--a,
+.btn-morph:focus-visible .btn-morph__img--a {
+  opacity: 0;
+  transform: scale(1.12);
+  filter: blur(10px);
+}
+.btn-morph:hover .btn-morph__img--b,
+.btn-morph:focus-visible .btn-morph__img--b {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
 }
 
 /* =====================
@@ -845,6 +880,30 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 
 /* =====================
+   Gmail flotante
+   ===================== */
+.gmail-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.55);
+  transition: transform .2s;
+}
+.gmail-float:hover { transform: scale(1.08); }
+.gmail-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================
    RESPONSIVE
    ===================== */
 @media (max-width: 900px) {
@@ -884,6 +943,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 
 @media (max-width: 420px) {
   .btn { padding: 12px 22px; font-size: 0.92rem; }
+  .gmail-float { width: 52px; height: 52px; }
+  .btn-morph { width: 260px; }
 }
 
 /* Reduce motion */

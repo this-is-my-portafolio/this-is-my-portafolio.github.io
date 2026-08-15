@@ -274,14 +274,16 @@
       <h2 class="section-title">¿Te gusta lo que hago?</h2>
       <p class="section-sub">Apoya el proyecto con una propina. Cada café ayuda a que Just King siga creciendo.</p>
 
-      <!-- Botón Buy Me a Coffee -->
+      <!-- Botón Buy Me a Coffee (morph a "Give me a kidney" en hover) -->
       <a
-        class="btn btn--bmc"
+        class="btn-morph"
         href="https://ko-fi.com/just_king"
         target="_blank"
         rel="noopener"
+        aria-label="Apóyame con un café en Ko-fi"
       >
-        ☕ Cómprame un café
+        <img class="btn-morph__img btn-morph__img--a" src="assets/buy-me-a-coffee.png" alt="Buy me a coffee" />
+        <img class="btn-morph__img btn-morph__img--b" src="assets/give-me-a-kidney.png" alt="Give me a kidney" />
       </a>
     </div>
   </section>
@@ -311,6 +313,17 @@
       <p class="footer__copy">© <span id="year"></span> Just King · Desarrollo web asistido con IA</p>
     </div>
   </footer>
+
+  <!-- Botón flotante Gmail -->
+  <a
+    class="gmail-float"
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=justk.service@gmail.com&su=Cotizaci%C3%B3n%20Just%20King"
+    target="_blank"
+    rel="noopener"
+    aria-label="Escríbeme por Gmail"
+  >
+    <img src="assets/gmail-button.png" alt="" />
+  </a>
 
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
