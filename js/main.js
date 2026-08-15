@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
           const json = await res.json().catch(() => ({}));
           status.textContent =
             json?.errors?.[0]?.message ||
-            "No se pudo enviar. Intenta de nuevo o escríbeme por WhatsApp.";
+            "No se pudo enviar. Intenta de nuevo o escríbeme al correo.";
           status.className = "form-status error";
         }
       } catch (err) {
         status.textContent =
-          "Error de red. Intenta de nuevo o escríbeme por WhatsApp.";
+          "Error de red. Intenta de nuevo o escríbeme al correo.";
         status.className = "form-status error";
       }
     });

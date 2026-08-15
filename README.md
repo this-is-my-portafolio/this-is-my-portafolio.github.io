@@ -70,7 +70,7 @@ Marcadores ya configurados en `index.html`:
 |---|---|---|
 | Formspree | Atributo `action` del formulario de contacto | ✅ Configurado (`formspree.io/f/mykrawwd`) |
 | Ko-fi | URL del botón "Cómprame un café" | ✅ Configurado (`ko-fi.com/just_king`) |
-| Número de WhatsApp | Aparece 2 veces: en el botón del formulario y en el botón flotante | ✅ Configurado (`+57 323 735 0147`). Si cambia, busca `573237350147` y reemplázalo (sin `+` ni espacios). |
+| Correo de contacto | Canal directo y mensajes de error del formulario | ✅ Configurado (`justk.service@gmail.com`) |
 
 Guarda, haz commit y push. GitHub Pages actualizará el sitio automáticamente en unos segundos.
 
@@ -98,7 +98,7 @@ Editable en las primeras líneas de `css/style.css` (variables `--pink`, `--red`
 | Rosa neón | `#FF00C8` | Gradientes y acentos |
 | Rojo neón | `#FF0033` | CTA principal (botones) |
 | Cyan neón | `#00E1FF` | Links, bordes interactivos |
-| Verde neón | `#39FF14` | Éxito, WhatsApp, badges |
+| Verde neón | `#39FF14` | Éxito, badges |
 
 ---
 

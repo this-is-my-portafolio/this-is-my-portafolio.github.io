@@ -761,7 +761,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   background: rgba(0, 225, 255, 0.06);
   transform: translateX(3px);
 }
-.channel--whatsapp:hover { border-color: var(--green); background: rgba(57, 255, 20, 0.08); }
 .channel__icon {
   width: 42px; height: 42px;
   border-radius: 50%;
@@ -770,7 +769,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   font-size: 1.15rem;
   color: var(--cyan);
 }
-.channel--whatsapp .channel__icon { color: var(--green); }
 .channel strong { display: block; font-family: var(--font-display); font-size: 0.98rem; }
 .channel small { display: block; color: var(--muted); font-size: 0.85rem; }
 
@@ -847,40 +845,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 
 /* =====================
-   WhatsApp flotante
-   ===================== */
-.wa-float {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  width: 58px; height: 58px;
-  border-radius: 50%;
-  background: var(--green);
-  color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  z-index: 40;
-  box-shadow: 0 6px 30px rgba(57, 255, 20, 0.45);
-  transition: transform .2s;
-}
-.wa-float:hover { transform: scale(1.08); }
-.wa-float::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid var(--green);
-  opacity: 0.5;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-/* =====================
    RESPONSIVE
    ===================== */
 @media (max-width: 900px) {
@@ -920,7 +884,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 
 @media (max-width: 420px) {
   .btn { padding: 12px 22px; font-size: 0.92rem; }
-  .wa-float { width: 52px; height: 52px; }
 }
 
 /* Reduce motion */
