@@ -265,51 +265,56 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .btn--block { width: 100%; }
 
-/* Botón "Buy me a coffee" con morph a "Give me a kidney" en hover */
-.btn-morph {
+/* Botón "Buy me a coffee": en hover aparece "Give me a kidney" con glow detrás */
+.btn-support {
   position: relative;
   display: inline-block;
   width: 320px;
   max-width: 88vw;
-  aspect-ratio: 900 / 450;
-  border-radius: 18px;
-  overflow: hidden;
-  transition: transform .3s ease, box-shadow .3s ease;
+  aspect-ratio: 900 / 276;
 }
-.btn-morph:hover,
-.btn-morph:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 34px rgba(255, 190, 60, 0.35);
+.btn-support__glow {
+  position: absolute;
+  inset: -30%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 70, 130, 0.55), rgba(255, 70, 130, 0) 72%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
 }
-.btn-morph__img {
+.btn-support:hover .btn-support__glow,
+.btn-support:focus-visible .btn-support__glow {
+  opacity: 1;
+}
+.btn-support__img {
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: opacity .55s ease, transform .55s ease, filter .55s ease;
+  object-fit: contain;
+  transition: opacity .3s ease, transform .3s ease;
 }
-.btn-morph__img--a {
+.btn-support__img--coffee {
   opacity: 1;
   transform: scale(1);
-  filter: blur(0);
 }
-.btn-morph__img--b {
+.btn-support__img--kidney {
   opacity: 0;
-  transform: scale(1.12);
-  filter: blur(10px);
+  transform: scale(0.85);
+  pointer-events: none;
 }
-.btn-morph:hover .btn-morph__img--a,
-.btn-morph:focus-visible .btn-morph__img--a {
+.btn-support:hover .btn-support__img--coffee,
+.btn-support:focus-visible .btn-support__img--coffee {
   opacity: 0;
-  transform: scale(1.12);
-  filter: blur(10px);
+  transform: scale(0.94);
 }
-.btn-morph:hover .btn-morph__img--b,
-.btn-morph:focus-visible .btn-morph__img--b {
+.btn-support:hover .btn-support__img--kidney,
+.btn-support:focus-visible .btn-support__img--kidney {
   opacity: 1;
-  transform: scale(1);
-  filter: blur(0);
+  transform: scale(1.08);
 }
 
 /* =====================
@@ -944,7 +949,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 @media (max-width: 420px) {
   .btn { padding: 12px 22px; font-size: 0.92rem; }
   .gmail-float { width: 52px; height: 52px; }
-  .btn-morph { width: 260px; }
+  .btn-support { width: 260px; }
 }
 
 /* Reduce motion */
