@@ -23,7 +23,7 @@ brumalia-telares/
 ```
 
 Documentación completa: ver [`docs/`](docs/README.md).
-Datos ficticios utilizados: ver [`datos-de-brumalia-telares/`](datos-de-brumalia-telares/README.md).
+Datos ficticios utilizados: ver [`datos-de-brumalia-telares/`](portafolio/brumalia-telares/datos-de-brumalia-telares/README.md).
 
 ## Cómo verlo
 
