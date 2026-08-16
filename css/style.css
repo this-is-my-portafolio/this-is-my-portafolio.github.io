@@ -724,10 +724,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
    ===================== */
 
 /* Caja interactiva de dos zonas: izquierda = Gmail, derecha = Fiverr.
-   Las dos imágenes de fondo ocupan siempre la caja completa (misma
-   geometría, object-fit: cover) y solo su opacity hace crossfade — no
-   hay scale/zoom en ninguna imagen. El oscurecimiento del lado inactivo
-   es un gradient overlay (.hire-split__shade), no una división dura. */
+   Una sola imagen de fondo (ya trae las dos marcas), fija — nunca cambia
+   de tamaño ni hace zoom. El oscurecimiento del lado inactivo al pasar
+   el cursor es un gradient overlay (.hire-split__shade), no una
+   división dura. */
 .hire-split {
   position: relative;
   width: 100%;
@@ -744,8 +744,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.5;
-  transition: opacity .4s ease;
   z-index: 1;
 }
 .hire-split__shade {
@@ -791,14 +789,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
    oscurece con degradado y su etiqueta se atenúa. :has() cubre las dos
    direcciones de forma simétrica — soportado por todos los navegadores
    modernos (Chrome/Edge/Safari/Firefox desde 2023-2024). */
-.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__bg--gmail,
-.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__bg--gmail {
-  opacity: 1;
-}
-.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__bg--fiverr,
-.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__bg--fiverr {
-  opacity: 0;
-}
 .hire-split:has(.hire-split__zone--gmail:hover) .hire-split__shade--fiverr,
 .hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__shade--fiverr {
   opacity: 1;
@@ -814,14 +804,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 
 /* Fiverr activo: mismo patrón, invertido */
-.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__bg--fiverr,
-.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__bg--fiverr {
-  opacity: 1;
-}
-.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__bg--gmail,
-.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__bg--gmail {
-  opacity: 0;
-}
 .hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__shade--gmail,
 .hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__shade--gmail {
   opacity: 1;
