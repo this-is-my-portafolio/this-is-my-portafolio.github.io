@@ -265,34 +265,21 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .btn--block { width: 100%; }
 
-/* Botón "Buy me a coffee": en hover el botón entero crece + glow detrás;
-   la imagen (coffee↔kidney) cambia de golpe, sin ninguna animación propia */
+/* Botón "Buy me a coffee": adaptación de FX-0005 (library/visual, zoom de
+   imagen al pasar el ratón) — la tarjeta se levanta y la imagen visible
+   hace zoom; en hover la imagen visible pasa a ser "give me a kidney" */
 .btn-support {
   position: relative;
   display: inline-block;
   width: 320px;
   max-width: 88vw;
   aspect-ratio: 900 / 276;
-  transition: transform .3s ease;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 .btn-support:hover,
 .btn-support:focus-visible {
-  transform: scale(1.08);
-}
-.btn-support__glow {
-  position: absolute;
-  inset: -30%;
-  z-index: 0;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255, 70, 130, 0.55), rgba(255, 70, 130, 0) 72%);
-  filter: blur(6px);
-  opacity: 0;
-  transition: opacity .3s ease;
-  pointer-events: none;
-}
-.btn-support:hover .btn-support__glow,
-.btn-support:focus-visible .btn-support__glow {
-  opacity: 1;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(255, 70, 130, 0.28);
 }
 .btn-support__img {
   position: absolute;
@@ -301,14 +288,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* sin transition: el cambio de una imagen a otra es instantáneo,
-     no debe percibirse como que "aparece" */
+  /* opacity fuera de la transición: el cambio de imagen es directo, no un
+     fundido. Solo el zoom (transform) anima, como en FX-0005. */
+  transition: transform .5s ease;
 }
 .btn-support__img--coffee {
   opacity: 1;
+  transform: scale(1);
 }
 .btn-support__img--kidney {
   opacity: 0;
+  transform: scale(1);
   pointer-events: none;
 }
 .btn-support:hover .btn-support__img--coffee,
@@ -318,6 +308,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .btn-support:hover .btn-support__img--kidney,
 .btn-support:focus-visible .btn-support__img--kidney {
   opacity: 1;
+  transform: scale(1.06);
 }
 
 /* =====================
