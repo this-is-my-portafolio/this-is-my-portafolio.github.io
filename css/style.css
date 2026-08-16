@@ -731,8 +731,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .hire-split {
   position: relative;
   width: 100%;
-  aspect-ratio: 1100 / 619;
-  max-height: 420px;
+  aspect-ratio: 3 / 1;
+  max-height: 320px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--card-border);
@@ -947,7 +947,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .hero { padding-top: 40px; }
   .hero__logo-wrap { width: 110px; height: 110px; }
   .about__stats { grid-template-columns: 1fr; }
-  .hire-split { max-height: 260px; }
   .hire-split__zone { padding-bottom: 10%; }
   .support { padding: 40px 24px; }
 }
