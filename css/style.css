@@ -265,13 +265,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 .btn--block { width: 100%; }
 
-/* Botón "Buy me a coffee": en hover aparece "Give me a kidney" con glow detrás */
+/* Botón "Buy me a coffee": en hover el botón entero crece + glow detrás;
+   la imagen (coffee↔kidney) cambia de golpe, sin ninguna animación propia */
 .btn-support {
   position: relative;
   display: inline-block;
   width: 320px;
   max-width: 88vw;
   aspect-ratio: 900 / 276;
+  transition: transform .3s ease;
+}
+.btn-support:hover,
+.btn-support:focus-visible {
+  transform: scale(1.08);
 }
 .btn-support__glow {
   position: absolute;
@@ -281,7 +287,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   background: radial-gradient(closest-side, rgba(255, 70, 130, 0.55), rgba(255, 70, 130, 0) 72%);
   filter: blur(6px);
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .3s ease;
   pointer-events: none;
 }
 .btn-support:hover .btn-support__glow,
@@ -295,28 +301,23 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* opacity fuera de la transición a propósito: el cambio de imagen es
-     directo (corte seco), solo el tamaño anima suavemente */
-  transition: transform .3s ease;
+  /* sin transition: el cambio de una imagen a otra es instantáneo,
+     no debe percibirse como que "aparece" */
 }
 .btn-support__img--coffee {
   opacity: 1;
-  transform: scale(1);
 }
 .btn-support__img--kidney {
   opacity: 0;
-  transform: scale(0.85);
   pointer-events: none;
 }
 .btn-support:hover .btn-support__img--coffee,
 .btn-support:focus-visible .btn-support__img--coffee {
   opacity: 0;
-  transform: scale(0.94);
 }
 .btn-support:hover .btn-support__img--kidney,
 .btn-support:focus-visible .btn-support__img--kidney {
   opacity: 1;
-  transform: scale(1.08);
 }
 
 /* =====================
