@@ -3,12 +3,15 @@
    Estilo futurista + ejecutivo · glassmorphism · sin cursor custom
    ========================================================= */
 
+/* 2026-08-16: se retiraron rosa y cyan (pedido explícito) — dominante
+   blanco/negro. --pink y --cyan se mantienen como nombres de variable
+   para no tocar cada clase que los usa, pero ya valen blanco/gris. */
 :root {
   --bg: #05060d;
   --bg-2: #0a0b16;
   --white: #ffffff;
-  --pink: #ff00c8;
-  --cyan: #00e1ff;
+  --pink: #ffffff;
+  --cyan: #d9d9d9;
   --red: #ff0033;
   --green: #39ff14;
 
@@ -92,9 +95,9 @@ h1, h2, h3 {
 }
 .ambient__blob--3 {
   width: 400px; height: 400px;
-  background: #4a5fff;
+  background: var(--white);
   top: 45%; left: 55%;
-  opacity: 0.14;
+  opacity: 0.1;
   animation-delay: -18s;
 }
 @keyframes drift {

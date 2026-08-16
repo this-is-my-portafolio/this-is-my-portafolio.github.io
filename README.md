@@ -89,15 +89,13 @@ Se usa en 3 lugares automáticamente: navbar, hero (portada) y footer, además d
 
 ## 🎨 Paleta de colores (por si quieres ajustar)
 
-Editable en las primeras líneas de `css/style.css` (variables `--pink`, `--red`, `--cyan`, `--green`):
+Editable en las primeras líneas de `css/style.css` (variables `--red`, `--green`; `--pink`/`--cyan` se conservan como nombres pero ya valen blanco/gris, no rosa/cyan):
 
 | Color | Hex | Uso |
 |---|---|---|
 | Negro | `#000000` | Fondo |
-| Blanco | `#FFFFFF` | Texto principal |
-| Rosa neón | `#FF00C8` | Gradientes y acentos |
+| Blanco | `#FFFFFF` | Texto principal, acentos, gradientes, bordes |
 | Rojo neón | `#FF0033` | CTA principal (botones) |
-| Cyan neón | `#00E1FF` | Links, bordes interactivos |
 | Verde neón | `#39FF14` | Éxito, badges |
 
 ---

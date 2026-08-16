@@ -1,20 +1,23 @@
 /* =========================================================
    Just King — Portafolio
-   Paleta:
+   Paleta (2026-08-16: se retiraron rosa y cyan — dominante
+   blanco/negro, pedido explícito del usuario):
      Negro   #000000  (fondo)
-     Blanco  #FFFFFF  (texto)
-     Rosa    #FF00C8  (acento decorativo / gradientes)
+     Blanco  #FFFFFF  (texto, acentos, gradientes, bordes)
      Rojo    #FF0033  (CTA principal)
-     Cyan    #00E1FF  (links, bordes interactivos)
-     Verde   #39FF14  (éxito, badges)
+     Verde   #39FF14  (éxito, badges, acento Fiverr)
+
+   --pink y --cyan se mantienen como nombres de variable (evita
+   tocar cada clase que los usa: .accent-pink, .link-cyan, etc.)
+   pero ahora valen blanco/gris claro — ya no son rosa ni cyan.
    ========================================================= */
 
 :root {
   --black: #000000;
   --white: #ffffff;
-  --pink: #ff00c8;
+  --pink: #ffffff;
   --red: #ff0033;
-  --cyan: #00e1ff;
+  --cyan: #d9d9d9;
   --green: #39ff14;
 
   --bg: #000000;
