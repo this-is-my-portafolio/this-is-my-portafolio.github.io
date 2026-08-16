@@ -201,69 +201,39 @@
       <div class="section-head" data-aos="fade-up">
         <span class="eyebrow">Contacto</span>
         <h2 class="section-title">Hablemos de tu <span class="accent-red">proyecto</span></h2>
-        <p class="section-sub">Cuéntame qué necesitas y te responderé en menos de 24 horas.</p>
+        <p class="section-sub">Escríbeme por correo o contrátame directo en Fiverr.</p>
       </div>
 
-      <div class="contact__grid">
-        <!-- Formulario -->
-        <form
-          class="contact__form"
-          data-aos="fade-up"
-          action="https://formspree.io/f/mykrawwd"
-          method="POST"
+      <!-- Caja interactiva: mitad izquierda = Gmail, mitad derecha = Fiverr -->
+      <div class="hire-split" data-aos="fade-up">
+        <a
+          class="hire-split__zone hire-split__zone--gmail"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=justk.service@gmail.com&su=Cotizaci%C3%B3n%20Just%20King"
+          target="_blank"
+          rel="noopener"
+          aria-label="Enviar mensaje por Gmail"
         >
-          <div class="field">
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" required autocomplete="name" />
-          </div>
+          <span class="hire-split__label">Enviar mensaje</span>
+        </a>
+        <a
+          class="hire-split__zone hire-split__zone--fiverr"
+          href="https://es.fiverr.com/sellers/sou_rey/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Contratar en Fiverr"
+        >
+          <span class="hire-split__label">Contratar</span>
+        </a>
+        <img class="hire-split__bg hire-split__bg--gmail" src="assets/contact-gmail.jpg" alt="" aria-hidden="true" />
+        <img class="hire-split__bg hire-split__bg--fiverr" src="assets/contact-fiverr.jpg" alt="" aria-hidden="true" />
+        <span class="hire-split__shade hire-split__shade--gmail" aria-hidden="true"></span>
+        <span class="hire-split__shade hire-split__shade--fiverr" aria-hidden="true"></span>
+      </div>
 
-          <div class="field">
-            <label for="email">Correo</label>
-            <input type="email" id="email" name="email" required autocomplete="email" />
-          </div>
-
-          <div class="field">
-            <label for="service">Servicio de interés</label>
-            <select id="service" name="service">
-              <option value="Landing Page">Landing Page</option>
-              <option value="Portafolio Web">Portafolio Web</option>
-              <option value="Tienda Básica">Tienda Básica</option>
-              <option value="Mantenimiento">Mantenimiento</option>
-              <option value="Otro">Otro / Cotización personalizada</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="message">Cuéntame tu idea</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-          <button type="submit" class="btn btn--primary btn--block">Enviar solicitud</button>
-
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
-
-        <!-- Canales directos -->
-        <aside class="contact__side" data-aos="fade-up" data-aos-delay="100">
-          <h3>Canales directos</h3>
-
-          <a class="channel" href="mailto:justk.service@gmail.com">
-            <span class="channel__icon" aria-hidden="true">✉</span>
-            <span>
-              <strong>Correo</strong>
-              <small>justk.service@gmail.com</small>
-            </span>
-          </a>
-
-          <div class="channel__socials">
-            <a href="https://www.instagram.com/justkin_g/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-            <a href="https://x.com/JustKing_g" target="_blank" rel="noopener" aria-label="X (Twitter)">X</a>
-            <a href="https://www.facebook.com/imjustking" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-            <a href="https://es.fiverr.com/sellers/sou_rey/" target="_blank" rel="noopener" aria-label="Fiverr">Fiverr</a>
-          </div>
-        </aside>
+      <div class="contact__socials" data-aos="fade-up" data-aos-delay="100">
+        <a href="https://www.instagram.com/justkin_g/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://x.com/JustKing_g" target="_blank" rel="noopener" aria-label="X (Twitter)">X</a>
+        <a href="https://www.facebook.com/imjustking" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
       </div>
     </div>
   </section>

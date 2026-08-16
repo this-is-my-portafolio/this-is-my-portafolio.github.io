@@ -12,7 +12,7 @@ Stack: **HTML5 + CSS3 + JavaScript vanilla**. Animaciones con **AOS**. Fuentes d
 site/
 ├── index.html          ← página principal
 ├── css/style.css       ← estilos (paleta neón sobre fondo negro)
-├── js/main.js          ← menú móvil, formulario, animaciones
+├── js/main.js          ← menú móvil, animaciones
 ├── assets/
 │   └── logo.png        ← logo/foto de perfil
 └── README.md           ← este archivo
@@ -68,9 +68,9 @@ Marcadores ya configurados en `index.html`:
 
 | Marcador | Dónde | Estado |
 |---|---|---|
-| Formspree | Atributo `action` del formulario de contacto | ✅ Configurado (`formspree.io/f/mykrawwd`) |
 | Ko-fi | URL del botón "Cómprame un café" | ✅ Configurado (`ko-fi.com/just_king`) |
-| Correo de contacto | Canal directo y mensajes de error del formulario | ✅ Configurado (`justk.service@gmail.com`) |
+| Correo de contacto | Enlace de Gmail en el botón flotante y en la caja de Contacto | ✅ Configurado (`justk.service@gmail.com`) |
+| Fiverr | Enlace en la caja de Contacto | ✅ Configurado (`es.fiverr.com/sellers/sou_rey/`) |
 
 Guarda, haz commit y push. GitHub Pages actualizará el sitio automáticamente en unos segundos.
 
@@ -113,16 +113,7 @@ Editable en las primeras líneas de `css/style.css` (variables `--pink`, `--red`
 
 ## 🔧 Probar localmente
 
-Simplemente abre `index.html` en el navegador (doble clic). No hay build ni servidor necesario.
-
-Para probar el formulario con Formspree necesitas servirlo por HTTP (algunos navegadores bloquean `fetch` desde `file://`):
-
-```bash
-# Python 3
-python -m http.server 8000
-```
-
-Y abre http://localhost:8000
+Simplemente abre `index.html` en el navegador (doble clic). No hay build ni servidor necesario — ya no hay formulario con `fetch`, así que ni siquiera hace falta servirlo por HTTP.
 
 ---
 

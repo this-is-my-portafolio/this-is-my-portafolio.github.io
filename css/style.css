@@ -722,104 +722,135 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 /* =====================
    CONTACTO
    ===================== */
-.contact__grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.contact__form {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-}
-.field { margin-bottom: 18px; }
-.field label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 6px;
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-}
-.field input,
-.field select,
-.field textarea {
+
+/* Caja interactiva de dos zonas: izquierda = Gmail, derecha = Fiverr.
+   Las dos imágenes de fondo ocupan siempre la caja completa (misma
+   geometría, object-fit: cover) y solo su opacity hace crossfade — no
+   hay scale/zoom en ninguna imagen. El oscurecimiento del lado inactivo
+   es un gradient overlay (.hire-split__shade), no una división dura. */
+.hire-split {
+  position: relative;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--card-border);
-  color: var(--white);
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 0.98rem;
-  transition: border-color .2s, box-shadow .2s;
-}
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  outline: 0;
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(0, 225, 255, 0.15);
-}
-.field textarea { resize: vertical; min-height: 120px; }
-
-.form-status { margin-top: 14px; font-size: 0.9rem; min-height: 1.2em; text-align: center; }
-.form-status.success { color: var(--green); }
-.form-status.error { color: var(--red); }
-
-.contact__side {
-  background: var(--card);
-  border: 1px solid var(--card-border);
+  aspect-ratio: 1100 / 619;
+  max-height: 420px;
   border-radius: var(--radius-lg);
-  padding: 32px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  isolation: isolate;
 }
-.contact__side h3 { font-size: 1.1rem; margin-bottom: 18px; }
-.channel {
+.hire-split__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: opacity .4s ease;
+  z-index: 1;
+}
+.hire-split__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.hire-split__shade--gmail {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 55%);
+}
+.hire-split__shade--fiverr {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 55%);
+}
+.hire-split__zone {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 50%;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: var(--radius);
-  border: 1px solid var(--card-border);
-  margin-bottom: 10px;
-  transition: border-color .2s, background .2s, transform .2s;
 }
-.channel:hover {
-  border-color: var(--cyan);
-  background: rgba(0, 225, 255, 0.06);
-  transform: translateX(3px);
+.hire-split__zone--gmail { left: 0; justify-content: flex-start; padding-left: 5%; }
+.hire-split__zone--fiverr { left: 50%; justify-content: flex-end; padding-right: 5%; }
+.hire-split__label {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.4vw, 1.4rem);
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0.75;
+  transition: opacity .3s ease, border-color .3s ease;
 }
-.channel__icon {
-  width: 42px; height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.15rem;
-  color: var(--cyan);
-}
-.channel strong { display: block; font-family: var(--font-display); font-size: 0.98rem; }
-.channel small { display: block; color: var(--muted); font-size: 0.85rem; }
 
-.channel__socials {
+/* Gmail activo (hover o foco en su zona): domina el fondo, Fiverr se
+   oscurece con degradado y su etiqueta se atenúa. :has() cubre las dos
+   direcciones de forma simétrica — soportado por todos los navegadores
+   modernos (Chrome/Edge/Safari/Firefox desde 2023-2024). */
+.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__bg--gmail,
+.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__bg--gmail {
+  opacity: 1;
+}
+.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__bg--fiverr,
+.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__bg--fiverr {
+  opacity: 0;
+}
+.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__shade--fiverr,
+.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__shade--fiverr {
+  opacity: 1;
+}
+.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__zone--gmail .hire-split__label,
+.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__zone--gmail .hire-split__label {
+  opacity: 1;
+  border-color: var(--cyan);
+}
+.hire-split:has(.hire-split__zone--gmail:hover) .hire-split__zone--fiverr .hire-split__label,
+.hire-split:has(.hire-split__zone--gmail:focus-visible) .hire-split__zone--fiverr .hire-split__label {
+  opacity: 0.4;
+}
+
+/* Fiverr activo: mismo patrón, invertido */
+.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__bg--fiverr,
+.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__bg--fiverr {
+  opacity: 1;
+}
+.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__bg--gmail,
+.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__bg--gmail {
+  opacity: 0;
+}
+.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__shade--gmail,
+.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__shade--gmail {
+  opacity: 1;
+}
+.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__zone--fiverr .hire-split__label,
+.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__zone--fiverr .hire-split__label {
+  opacity: 1;
+  border-color: var(--green);
+}
+.hire-split:has(.hire-split__zone--fiverr:hover) .hire-split__zone--gmail .hire-split__label,
+.hire-split:has(.hire-split__zone--fiverr:focus-visible) .hire-split__zone--gmail .hire-split__label {
+  opacity: 0.4;
+}
+
+.contact__socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--card-border);
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
 }
-.channel__socials a {
+.contact__socials a {
   font-size: 0.82rem;
   font-family: var(--font-mono);
-  padding: 6px 12px;
+  padding: 8px 16px;
   border: 1px solid var(--card-border);
   border-radius: 999px;
   color: var(--muted);
   transition: color .2s, border-color .2s;
 }
-.channel__socials a:hover { color: var(--pink); border-color: var(--pink); }
+.contact__socials a:hover { color: var(--pink); border-color: var(--pink); }
 
 /* =====================
    APÓYAME
@@ -902,7 +933,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
    RESPONSIVE
    ===================== */
 @media (max-width: 900px) {
-  .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 30px; }
+  .about__grid { grid-template-columns: 1fr; gap: 30px; }
   .footer__inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
 }
 
@@ -932,7 +963,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .hero { padding-top: 40px; }
   .hero__logo-wrap { width: 110px; height: 110px; }
   .about__stats { grid-template-columns: 1fr; }
-  .contact__form, .contact__side { padding: 24px; }
+  .hire-split { max-height: 260px; }
+  .hire-split__label { padding: 9px 16px; }
   .support { padding: 40px 24px; }
 }
 
