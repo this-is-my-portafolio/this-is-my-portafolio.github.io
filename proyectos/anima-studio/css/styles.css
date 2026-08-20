@@ -53,8 +53,11 @@ a { color: var(--dorado); }
 }
 .volver:hover { border-color: var(--dorado); color: var(--dorado); }
 
-/* --- Hero --- */
-.hero__img { width: 100%; height: clamp(220px, 40vw, 500px); object-fit: cover; }
+/* --- Hero ---
+   La proporcion coincide con la imagen real (1400x933): con aspect-ratio en
+   vez de una altura fija + object-fit:cover, el espacio crece hasta mostrar
+   el banner completo, sin recortar nada. */
+.hero__img { width: 100%; height: auto; aspect-ratio: 1400 / 933; display: block; }
 
 /* --- Intro --- */
 .intro {
