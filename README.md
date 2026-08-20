@@ -1,128 +1,140 @@
 # Just King — Portafolio (GitHub Pages)
 
-Sitio web de una sola página para la marca personal **Just King**, especializada en desarrollo de páginas web asistido por IA.
+Portafolio de **Just King** enfocado en sitios web para **restaurantes y
+tiendas**. Un carrusel de tarjetas apiladas a la izquierda, un panel de
+detalle a la derecha, y cinco proyectos de demostración navegables dentro del
+mismo repositorio.
 
-Stack: **HTML5 + CSS3 + JavaScript vanilla**. Animaciones con **AOS**. Fuentes de Google Fonts. Sin build, sin dependencias que instalar.
+Stack: **HTML5 + CSS3 + JavaScript vanilla** (módulos ES). Sin build, sin
+dependencias que instalar. Solo Google Fonts por CDN.
+
+En vivo: <https://this-is-my-portafolio.github.io>
 
 ---
 
-## 📁 Estructura
+## Estructura
 
 ```
 site/
-├── index.html          ← página principal
-├── css/style.css       ← estilos (paleta neón sobre fondo negro)
-├── js/main.js          ← menú móvil, animaciones
+├── index.html                  ← el portafolio (carrusel + panel de detalle)
+├── css/portafolio.css
+├── js/
+│   ├── proyectos.js            ← ★ FUENTE ÚNICA DE DATOS
+│   └── carrusel.js             ← render y navegación; no conoce ningún proyecto
+├── proyectos/                  ← los cinco sitios de demostración
+│   ├── cenizo/                 restaurante · carta + reserva
+│   ├── tostado-nueve/          cafetería · menú por tueste + pedido
+│   ├── anima-studio/           tienda · catálogo editorial
+│   ├── raiz-y-tallo/           floristería · franjas de entrega
+│   └── horno-cinco/            panadería · hornadas con cupo
 ├── assets/
-│   └── logo.png        ← logo/foto de perfil
-└── README.md           ← este archivo
+│   ├── logo.png
+│   └── marcas/<slug>/          logo y banner de cada negocio
+└── inicio-anterior/            ← landing anterior de Just King, archivada
 ```
 
 ---
 
-## 🚀 Cómo subirlo a GitHub Pages (paso a paso)
+## Agregar o quitar un proyecto
 
-### 1. Crear el repositorio con el nombre correcto
+Todo vive en [`js/proyectos.js`](js/proyectos.js). Es un array: agregar un
+objeto agrega una tarjeta al mazo, un punto en móvil y una entrada en el
+contador. **No hay que tocar el HTML ni el carrusel.**
 
-Para que la URL final sea **`https://this-is-my-portafolio.github.io`**, tu cuenta de GitHub debe llamarse `this-is-my-portafolio`, y el repositorio también debe llamarse **exactamente**:
-
+```js
+{
+  slug:        'mi-negocio',
+  categoria:   'Restaurante',            // eyebrow, se pone en mayúsculas
+  tipo:        'Landing de reservas',    // subtítulo técnico
+  nombre:      'Mi Negocio',             // título grande
+  descripcion: '2-3 líneas: qué es, qué resuelve, qué tiene de especial.',
+  tags:        ['HTML', 'CSS', 'JavaScript'],
+  metrica:     { valor: '+38%', etiqueta: 'reservas online' },
+  url:         'proyectos/mi-negocio/',  // relativa a la raíz del sitio
+  urlVisible:  'minegocio.just-king.dev',// lo que se lee en el mockup
+  logo:        'assets/marcas/mi-negocio/logo.png',
+  enVivo:      true,                     // false → botón "Próximamente"
+}
 ```
-this-is-my-portafolio.github.io
-```
 
-- Ve a https://github.com/new
-- **Repository name:** `this-is-my-portafolio.github.io`
-- Visibilidad: **Public**
-- No marques "Add README" (para no crear conflictos)
-- Crea el repositorio
+---
 
-### 2. Subir los archivos
+## Sistema visual
 
-Desde la carpeta `site/`, abre una terminal y ejecuta:
+Negro absoluto, neón blanco, y **oro como único color de acción**.
+
+| Rol | Hex | Uso |
+|---|---|---|
+| Fondo | `#000000` | Toda la página, sin gradientes |
+| Neón blanco | `#F5F5FF` | Títulos, bordes activos, glow |
+| Gris cuerpo | `#A8A8B8` | Párrafos — 9.0:1 sobre negro |
+| Gris meta | `#787884` | Etiquetas mono — 4.8:1, pasa AA |
+| Oro | `#D4AF37` | **Solo** CTA y la métrica destacada |
+| Verde | `#2BE38F` | **Solo** el punto de 6 px de "EN VIVO" |
+
+Tipografías: **Space Grotesk** (títulos, tracking negativo) y **JetBrains
+Mono** (etiquetas, datos, siempre en mayúsculas con tracking abierto).
+
+El glow es `box-shadow` multicapa real, no un `border` de color: cuatro capas
+hasta 60 px para el blanco, tres hasta 32 px para el oro — por eso el oro se
+lee más cálido y compacto al lado del blanco.
+
+**El color de cada marca vive solo dentro del mockup del navegador.** En el
+cromo del portafolio los logos van en escala de grises: así el oro sigue
+siendo el único acento y los sitios reales resaltan por contraste.
+
+---
+
+## Accesibilidad
+
+- Carrusel con patrón `tablist` / `tab`, un solo tab stop (roving tabindex).
+- Flechas ←→↑↓, `Home` y `End` navegan entre proyectos.
+- Panel de detalle con `aria-live="polite"`.
+- Foco visible en todo lo interactivo; nunca `outline: none` a secas.
+- Todo el texto pasa WCAG AA (≥ 4.5:1) sobre negro.
+- `prefers-reduced-motion: reduce` apaga transiciones, el latido de "EN VIVO"
+  y el desplazamiento del mazo.
+
+---
+
+## Responsive
+
+| Ancho | Comportamiento |
+|---|---|
+| ≥ 1180 px | Dos columnas: mazo 360 px + detalle |
+| 1000–1180 px | Dos columnas, mazo 300 px |
+| 780–1000 px | Una columna; el mazo conserva el 3D, ahora a lo ancho |
+| < 780 px | Sin apilado 3D: una tarjeta plana, swipe + flechas, puntos |
+
+---
+
+## Probar localmente
+
+Hace falta servirlo por HTTP: `js/carrusel.js` es un módulo ES y el mockup
+carga los proyectos en `iframe`.
 
 ```bash
-git init
-git add .
-git commit -m "Initial commit: Just King portfolio"
-git branch -M main
-git remote add origin https://github.com/this-is-my-portafolio/this-is-my-portafolio.github.io.git
-git push -u origin main
+python3 -m http.server 8731
 ```
 
-(También puedes arrastrar los archivos en la web de GitHub si prefieres no usar consola.)
-
-### 3. Activar GitHub Pages
-
-1. En el repositorio, ve a **Settings** → **Pages**
-2. En **Source**, selecciona **Deploy from a branch**
-3. En **Branch**, elige `main` y carpeta `/ (root)`
-4. Guarda. En 1–2 minutos, tu sitio estará en:
-
-   **https://this-is-my-portafolio.github.io**
+Luego abre <http://localhost:8731>.
 
 ---
 
-## ⚙️ Configuración obligatoria antes de publicar
+## Desplegar
 
-Marcadores ya configurados en `index.html`:
+GitHub Pages sirve la rama `main` desde la raíz. Hacer commit y push publica.
 
-| Marcador | Dónde | Estado |
-|---|---|---|
-| Ko-fi | URL del botón "Cómprame un café" | ✅ Configurado (`ko-fi.com/just_king`) |
-| Correo de contacto | Enlace de Gmail en el botón flotante y en la caja de Contacto | ✅ Configurado (`justk.service@gmail.com`) |
-| Fiverr | Enlace en la caja de Contacto | ✅ Configurado (`es.fiverr.com/sellers/sou_rey/`) |
-
-Guarda, haz commit y push. GitHub Pages actualizará el sitio automáticamente en unos segundos.
+```bash
+git add -A && git commit -m "..." && git push
+```
 
 ---
 
-## 🖼️ Cómo cambiar el logo
+## Nota sobre el contenido
 
-El logo actual está en `assets/logo.png` (fue copiado desde tu carpeta original). Para reemplazarlo:
-
-1. Sustituye el archivo `assets/logo.png` por tu nueva imagen (**mismo nombre**, formato PNG cuadrado, mínimo 400×400 px).
-2. Haz commit + push.
-
-Se usa en 3 lugares automáticamente: navbar, hero (portada) y footer, además del favicon.
-
----
-
-## 🎨 Paleta de colores (por si quieres ajustar)
-
-Editable en las primeras líneas de `css/style.css` (variables `--red`, `--green`; `--pink`/`--cyan` se conservan como nombres pero ya valen blanco/gris, no rosa/cyan):
-
-| Color | Hex | Uso |
-|---|---|---|
-| Negro | `#000000` | Fondo |
-| Blanco | `#FFFFFF` | Texto principal, acentos, gradientes, bordes |
-| Rojo neón | `#FF0033` | CTA principal (botones) |
-| Verde neón | `#39FF14` | Éxito, badges |
-
----
-
-## ✅ Pendientes que pusiste como "por completar"
-
-- **Lista definitiva de servicios y precios:** ya hay 4 tarjetas con precios de referencia (Landing $120, Portafolio $180, Tienda $300, Mantenimiento $40/mes). Ajústalos en `index.html` (sección `#services`).
-- **Texto "Sobre mí":** escribí una versión inicial en 3 párrafos en la sección `#about`. Reemplázalo cuando tengas tu versión definitiva.
-- **Testimonios:** son placeholders honestos ("aún no tengo reseñas, sé el primero"). Cuando tengas testimonios reales, reemplázalos.
-- **Proyectos:** hay 3 tarjetas con etiqueta "Demo"/"Próximamente" y fondos generados con gradientes CSS. Cuando termines un proyecto real, sustituye la tarjeta correspondiente añadiendo una imagen en `assets/` y un enlace.
-
----
-
-## 🔧 Probar localmente
-
-Simplemente abre `index.html` en el navegador (doble clic). No hay build ni servidor necesario — ya no hay formulario con `fetch`, así que ni siquiera hace falta servirlo por HTTP.
-
----
-
-## 📬 Correo con dominio propio (a futuro)
-
-Cuando compres un dominio (p. ej. `justking.com`), podrás:
-
-1. Apuntarlo a GitHub Pages (configuración estándar de CNAME).
-2. Crear un correo `contacto@justking.com` con **Zoho Mail** (gratis para 1 usuario) o **Google Workspace** (de pago).
-
-Mientras tanto, `justk.service@gmail.com` funciona perfectamente como correo de contacto.
+Los cinco negocios son **ficticios** y las métricas son inventadas: es un
+portafolio de demostración. Cada sitio lo dice en su pie de página.
 
 ---
 

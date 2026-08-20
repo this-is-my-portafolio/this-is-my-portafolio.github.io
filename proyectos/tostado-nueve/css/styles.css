@@ -1,0 +1,221 @@
+/* Tostado Nueve — oliva y dorado, clásico de cafetería. */
+
+:root {
+  --oliva:    #4A5230;
+  --oliva-cl: #5E6B38;
+  --crema:    #F0EAD8;
+  --crema-t:  #CFC7AE;
+  --dorado:   #C9A961;
+  --tinta:    #262A16;
+  --borde:    rgba(240, 234, 216, .14);
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --texto:    'Inter', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--oliva);
+  color: var(--crema-t);
+  font-family: var(--texto);
+  font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--serif); color: var(--crema); margin: 0; font-weight: 500; }
+a { color: var(--dorado); }
+
+.saltar {
+  position: absolute; top: -100px; left: 16px; z-index: 50;
+  background: var(--dorado); color: var(--tinta);
+  padding: 12px 18px; text-decoration: none; border-radius: 4px;
+}
+.saltar:focus { top: 12px; }
+:focus-visible { outline: 2px solid var(--dorado); outline-offset: 3px; }
+
+/* --- Barra --- */
+.barra {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 18px;
+  padding: 8px clamp(16px, 4vw, 40px);
+  background: rgba(74, 82, 48, .94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--borde);
+}
+.barra__logo { height: 48px; width: auto; }
+.barra__tueste {
+  margin: 0 auto 0 0;
+  font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--dorado);
+}
+.volver {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--crema-t); text-decoration: none;
+  border: 1px solid var(--borde); border-radius: 999px; padding: 6px 12px;
+}
+.volver:hover { border-color: var(--dorado); color: var(--dorado); }
+
+/* --- Hero --- */
+.hero { border-bottom: 1px solid var(--borde); }
+.hero__img { width: 100%; height: clamp(200px, 34vw, 420px); object-fit: cover; }
+
+/* --- Layout --- */
+.doble {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: clamp(28px, 4vw, 52px);
+  max-width: 1200px; margin: 0 auto;
+  padding: clamp(28px, 4vw, 56px) clamp(16px, 4vw, 40px);
+  align-items: start;
+}
+
+/* --- Tueste del día --- */
+.tueste {
+  background: rgba(38, 42, 22, .5);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin-bottom: 34px;
+}
+.tueste__etiqueta {
+  margin: 0; font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--dorado);
+}
+.tueste__nombre { font-size: clamp(28px, 4vw, 38px); margin: 4px 0 6px; }
+.tueste__notas { margin: 0 0 16px; font-size: 14px; font-style: italic; }
+
+.tueste__barra {
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(90deg, #D9C89A, #A9762F, #3A2412);
+  position: relative;
+}
+.tueste__barra span {
+  position: absolute; top: 50%; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--crema);
+  border: 2px solid var(--oliva);
+  transform: translate(-50%, -50%);
+  transition: left .4s cubic-bezier(.2,.8,.2,1);
+}
+.tueste__escala {
+  display: flex; justify-content: space-between;
+  margin: 8px 0 0; font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--crema-t); opacity: .7;
+}
+
+/* --- Menú --- */
+.menu__titulo { font-size: clamp(30px, 4.4vw, 40px); }
+.menu__nota { margin: 4px 0 24px; font-size: 13px; font-style: italic; }
+
+.grupo { margin-bottom: 30px; }
+.grupo__titulo {
+  font-family: var(--texto);
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--dorado);
+  padding-bottom: 8px; margin: 0 0 4px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 4px 14px;
+  padding: 14px 2px;
+  border-bottom: 1px solid rgba(240, 234, 216, .07);
+}
+.item__nombre { font-family: var(--serif); font-size: 21px; color: var(--crema); }
+.item__desc { grid-column: 1 / -1; margin: 0; font-size: 13px; }
+.item__precio { font-size: 15px; color: var(--crema); white-space: nowrap; }
+.item__precio del { color: var(--crema-t); opacity: .6; margin-right: 6px; font-size: 13px; }
+.item__ajuste {
+  display: inline-block; margin-left: 8px;
+  font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--dorado); border: 1px solid var(--dorado);
+  border-radius: 3px; padding: 1px 5px;
+}
+
+.agregar {
+  width: 32px; height: 32px;
+  background: transparent; color: var(--crema);
+  border: 1px solid var(--borde); border-radius: 50%;
+  font-size: 20px; line-height: 1; cursor: pointer;
+  transition: all .16s ease;
+}
+.agregar:hover { background: var(--dorado); border-color: var(--dorado); color: var(--tinta); }
+
+/* --- Panel de pedido --- */
+.pedido { position: sticky; top: 80px; }
+.pedido__caja {
+  background: rgba(38, 42, 22, .55);
+  border: 1px solid var(--borde);
+  border-radius: 10px; padding: 22px;
+}
+.pedido__caja h2 { font-size: 26px; margin-bottom: 14px; }
+
+.pedido__lista { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 10px; }
+.linea { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; font-size: 14px; }
+.linea__cant {
+  display: inline-grid; place-items: center;
+  min-width: 24px; height: 24px; padding: 0 6px;
+  background: var(--dorado); color: var(--tinta);
+  border-radius: 4px; font-size: 12px; font-weight: 600;
+}
+.linea__nombre { color: var(--crema); }
+.linea__quitar {
+  background: none; border: 0; color: var(--crema-t);
+  font-size: 18px; line-height: 1; cursor: pointer; padding: 0 4px;
+}
+.linea__quitar:hover { color: #E8A08A; }
+
+.pedido__vacio { font-size: 13px; font-style: italic; opacity: .75; margin: 0 0 14px; }
+
+.pedido__totales { margin: 0 0 16px; padding-top: 12px; border-top: 1px solid var(--borde); }
+.pedido__totales div { display: flex; justify-content: space-between; font-size: 14px; }
+.pedido__totales dt, .pedido__totales dd { margin: 0; }
+.pedido__total { margin-top: 6px; font-size: 17px !important; color: var(--crema); font-weight: 600; }
+
+.boton {
+  width: 100%; padding: 13px;
+  background: var(--dorado); color: var(--tinta);
+  border: 0; border-radius: 6px;
+  font: inherit; font-size: 12px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; transition: opacity .18s ease;
+}
+.boton:disabled { opacity: .35; cursor: not-allowed; }
+.boton:not(:disabled):hover { opacity: .88; }
+
+.enlace {
+  width: 100%; margin-top: 8px; padding: 6px;
+  background: none; border: 0; color: var(--crema-t);
+  font: inherit; font-size: 12px; text-decoration: underline; cursor: pointer;
+}
+.pedido__estado { margin: 10px 0 0; font-size: 13px; color: var(--dorado); min-height: 18px; }
+.pedido__guardado { margin: 12px 0 0; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; opacity: .55; }
+
+/* --- Pie --- */
+.pie { border-top: 1px solid var(--borde); padding: 30px 20px; text-align: center; font-size: 13px; }
+.pie p { margin: 4px 0; }
+.pie strong { font-family: var(--serif); font-size: 19px; color: var(--crema); font-weight: 600; }
+.pie__demo { font-size: 11px; opacity: .6; }
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .doble { grid-template-columns: minmax(0, 1fr); }
+  /* En móvil el pedido pasa abajo pero se ancla al borde inferior. */
+  .pedido { position: sticky; bottom: 0; top: auto; }
+}
+@media (max-width: 560px) {
+  .barra__tueste { display: none; }
+  .item { grid-template-columns: 1fr auto; }
+  .agregar { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}

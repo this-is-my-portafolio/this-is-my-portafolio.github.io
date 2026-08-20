@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tostado Nueve — Cafetería</title>
+  <meta name="description" content="Tostado Nueve: menú vivo según el tueste del día. Arma tu pedido y recógelo listo." />
+  <meta name="theme-color" content="#4A5230" />
+  <link rel="icon" type="image/png" href="../../assets/marcas/tostado-nueve/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<a class="saltar" href="#menu">Saltar al menú</a>
+
+<header class="barra">
+  <img class="barra__logo" src="../../assets/marcas/tostado-nueve/logo.png" alt="Tostado Nueve" />
+  <p class="barra__tueste" id="barra-tueste"></p>
+  <a class="volver" href="../../">← Portafolio</a>
+</header>
+
+<section class="hero">
+  <img class="hero__img" src="../../assets/marcas/tostado-nueve/banner.jpg" alt="Tostado Nueve — cafetería, menú vivo según el tueste del día" />
+</section>
+
+<main class="doble" id="menu">
+
+  <section class="menu" aria-labelledby="menu-titulo">
+    <div class="tueste" id="tueste">
+      <p class="tueste__etiqueta">Tueste de hoy</p>
+      <h2 class="tueste__nombre" id="tueste-nombre"></h2>
+      <p class="tueste__notas" id="tueste-notas"></p>
+      <div class="tueste__barra" role="img" id="tueste-barra" aria-label="">
+        <span id="tueste-relleno"></span>
+      </div>
+      <p class="tueste__escala"><span>Claro</span><span>Medio</span><span>Oscuro</span></p>
+    </div>
+
+    <h2 id="menu-titulo" class="menu__titulo">Menú</h2>
+    <p class="menu__nota" id="menu-nota"></p>
+
+    <div id="grupos"><!-- generado desde js/main.js --></div>
+  </section>
+
+  <aside class="pedido" aria-labelledby="pedido-titulo">
+    <div class="pedido__caja">
+      <h2 id="pedido-titulo">Tu pedido</h2>
+      <ul class="pedido__lista" id="pedido-lista"></ul>
+      <p class="pedido__vacio" id="pedido-vacio">Todavía no has agregado nada.</p>
+
+      <dl class="pedido__totales">
+        <div><dt>Subtotal</dt><dd id="subtotal">$0</dd></div>
+        <div class="pedido__total"><dt>Total</dt><dd id="total">$0</dd></div>
+      </dl>
+
+      <button class="boton" type="button" id="confirmar" disabled>Confirmar pedido</button>
+      <button class="enlace" type="button" id="vaciar" hidden>Vaciar pedido</button>
+      <p class="pedido__estado" id="pedido-estado" role="status"></p>
+      <p class="pedido__guardado">Tu pedido se guarda en este navegador.</p>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="pie">
+  <p><strong>Tostado Nueve</strong> · Carrera 9 #45-12 · Todos los días 7:00–20:00</p>
+  <p class="pie__demo">Negocio ficticio — demostración del portafolio de <a href="../../">Just King</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

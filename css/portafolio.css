@@ -1,0 +1,707 @@
+/* ============================================================================
+   Just King — portafolio de restaurantes y tiendas
+   Negro absoluto, neon blanco, oro solo en accion.
+   ========================================================================= */
+
+:root {
+  /* --- Paleta ------------------------------------------------------------ */
+  --negro:        #000000;
+  --neon:         #F5F5FF;  /* blanco frio: el glow puro se ve plano */
+  --blanco:       #FFFFFF;  /* solo el titulo del proyecto activo */
+  --gris-cuerpo:  #A8A8B8;  /* 9.2:1 sobre negro — parrafos */
+  --gris-meta:    #787884;  /* 4.8:1 — tags inactivos, url, numeracion.
+                               Va en texto de 10-11px, asi que tiene que pasar
+                               el 4.5:1 de AA igual que un parrafo. */
+  --oro:          #D4AF37;  /* SOLO botones y la metrica destacada */
+  --oro-claro:    #F0CC5A;  /* hover / focus del CTA */
+  --verde:        #2BE38F;  /* SOLO el punto de 6px de "EN VIVO" */
+
+  --borde:        rgba(245, 245, 255, .10);
+  --borde-activo: rgba(245, 245, 255, .28);
+  --velo:         rgba(245, 245, 255, .04);
+
+  /* --- Glow multicapa ----------------------------------------------------
+     Un `border` plano no hace neon. El blanco lleva cuatro capas hasta 60px;
+     el oro se queda en 32px y sin la capa mas difusa, por eso se lee mas
+     calido y compacto al lado del blanco. */
+  --glow-blanco:
+    0 0 1px  rgba(245, 245, 255, .90),
+    0 0 6px  rgba(245, 245, 255, .35),
+    0 0 24px rgba(245, 245, 255, .14),
+    0 0 60px rgba(245, 245, 255, .06);
+
+  --glow-blanco-tenue:
+    0 0 1px  rgba(245, 245, 255, .45),
+    0 0 8px  rgba(245, 245, 255, .12),
+    0 0 28px rgba(245, 245, 255, .05);
+
+  --glow-oro:
+    0 0 1px  rgba(212, 175, 55, .90),
+    0 0 10px rgba(212, 175, 55, .40),
+    0 0 32px rgba(212, 175, 55, .18);
+
+  --glow-texto: 0 0 18px rgba(245, 245, 255, .30);
+
+  /* --- Tipografia -------------------------------------------------------- */
+  --display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* --- Movimiento --------------------------------------------------------
+     Una sola curva para todo lo que se mueve: salida rapida, llegada suave. */
+  --curva: cubic-bezier(.2, .8, .2, 1);
+  --t-tarjeta: 260ms;
+  --t-glow: 180ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--negro);   /* absoluto: sin gradientes grises de por medio */
+  color: var(--gris-cuerpo);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+/* --- Accesibilidad -------------------------------------------------------- */
+
+.visualmente-oculto {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+.saltar {
+  position: absolute; top: -100px; left: 16px; z-index: 100;
+  padding: 12px 20px;
+  background: var(--negro);
+  color: var(--neon);
+  border: 1px solid var(--borde-activo);
+  font-family: var(--mono);
+  font-size: 13px;
+  text-decoration: none;
+}
+.saltar:focus { top: 16px; }
+
+/* Foco visible en todo lo interactivo. Nunca `outline: none` a secas. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--neon);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Cabecera ------------------------------------------------------------- */
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px clamp(20px, 4vw, 48px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.cabecera__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--neon);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .14em;
+}
+.cabecera__marca img { width: 28px; height: 28px; object-fit: contain; }
+.cabecera__marca b { font-weight: 500; color: var(--gris-meta); }
+
+.cabecera__meta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+
+/* --- Rejilla principal ---------------------------------------------------- */
+
+.escena {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 48px);
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ============================================================================
+   Mazo de tarjetas
+   ========================================================================= */
+
+.mazo { position: sticky; top: 40px; }
+
+.mazo__escenario {
+  position: relative;
+  height: 390px;
+  perspective: 1400px;          /* perspectiva ligera, no de videojuego */
+  perspective-origin: 50% 40%;
+}
+
+.mazo__pila {
+  list-style: none;
+  margin: 0; padding: 0;
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.tarjeta {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 300px;
+  /* Origen al centro: con el origen abajo, al encoger las tarjetas de atras su
+     borde superior baja y se come el desplazamiento que las hace asomar. */
+  transform-origin: 50% 50%;
+  transition:
+    transform var(--t-tarjeta) var(--curva),
+    opacity   var(--t-tarjeta) var(--curva),
+    filter    var(--t-tarjeta) var(--curva);
+  will-change: transform, opacity;
+}
+
+.tarjeta__boton {
+  /* La tarjeta entera es el control: un solo tab stop por proyecto. */
+  position: relative;   /* ancla del logo de fondo; sin esto se sale del clip */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; height: 100%;
+  padding: 22px;
+  background: #050505;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color var(--t-glow) var(--curva),
+    box-shadow   var(--t-glow) var(--curva);
+}
+
+/* El logo del negocio vive detras, muy bajado, como marca de agua.
+   Siempre en gris: el unico color de la pagina es el oro del CTA, y el color
+   de cada marca se ve donde corresponde, dentro del mockup del navegador. */
+.tarjeta__fondo {
+  position: absolute;
+  right: -18%; bottom: -14%;
+  width: 74%;
+  opacity: .14;
+  filter: grayscale(1) contrast(1.15);
+  pointer-events: none;
+  transition: opacity var(--t-glow) var(--curva);
+}
+
+.tarjeta__cabeza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+}
+
+.tarjeta__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  color: var(--gris-meta);
+}
+
+.tarjeta__cuerpo { position: relative; }
+
+.tarjeta__nombre {
+  display: block;           /* es un <span>: sin esto la categoria se le pega */
+  margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  color: var(--neon);
+}
+
+.tarjeta__cat {
+  display: block;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+
+/* Estados del mazo: la activa al frente, las demas apiladas hacia atras.
+   Las posiciones exactas las calcula carrusel.js via custom properties. */
+.tarjeta {
+  transform:
+    translate3d(0, calc(var(--desp, 0) * 1px), calc(var(--prof, 0) * 1px))
+    rotateX(var(--giro, 0deg))
+    scale(var(--escala, 1));
+  opacity: var(--opa, 1);
+  z-index: var(--capa, 0);
+}
+
+.tarjeta:not(.tarjeta--activa) .tarjeta__boton { pointer-events: auto; }
+.tarjeta:not(.tarjeta--activa) { filter: brightness(.55); }
+
+.tarjeta--activa .tarjeta__boton {
+  border-color: var(--borde-activo);
+  box-shadow: var(--glow-blanco-tenue);
+}
+.tarjeta--activa .tarjeta__fondo { opacity: .26; }
+
+/* Glow real en hover, igual que en la tarjeta de detalle. */
+.tarjeta__boton:hover,
+.tarjeta__boton:focus-visible {
+  border-color: var(--borde-activo);
+  box-shadow: var(--glow-blanco);
+}
+.tarjeta__boton:hover .tarjeta__fondo { opacity: .34; }
+
+/* Animacion de entrada al cambiar de proyecto: lift + slide, no fade. */
+@keyframes entrar {
+  from { transform: translate3d(0, 14px, 0) scale(.985); opacity: 0; }
+  to   { transform: translate3d(0, 0, 0)    scale(1);    opacity: 1; }
+}
+
+/* --- Insignia EN VIVO -----------------------------------------------------
+   El punto es verde; el texto se queda en blanco. Asi el color se lee sin
+   competir con el oro, que es el unico acento de la marca. */
+
+.envivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--neon);
+  white-space: nowrap;
+}
+
+.envivo::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow: 0 0 8px rgba(43, 227, 143, .8);
+  animation: latido 2.4s ease-in-out infinite;
+}
+
+@keyframes latido {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .35; }
+}
+
+/* --- Controles ------------------------------------------------------------ */
+
+.mazo__controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.flecha {
+  width: 42px; height: 42px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  color: var(--neon);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color var(--t-glow) var(--curva),
+    box-shadow   var(--t-glow) var(--curva),
+    color        var(--t-glow) var(--curva);
+}
+.flecha span { display: block; margin-top: -3px; }
+
+.flecha:hover,
+.flecha:focus-visible {
+  border-color: var(--borde-activo);
+  box-shadow: var(--glow-blanco);
+}
+
+.contador {
+  margin: 0;
+  min-width: 62px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: var(--gris-meta);
+}
+.contador b { color: var(--neon); font-weight: 500; }
+
+/* Los puntos solo aparecen en movil; en escritorio manda el contador. */
+.puntos { display: none; list-style: none; margin: 0; padding: 0; gap: 8px; }
+.puntos li {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--borde-activo);
+  transition: background var(--t-glow) var(--curva),
+              box-shadow var(--t-glow) var(--curva);
+}
+.puntos li[data-activo] {
+  background: var(--neon);
+  box-shadow: 0 0 8px rgba(245, 245, 255, .7);
+}
+
+/* ============================================================================
+   Panel de detalle
+   ========================================================================= */
+
+.detalle {
+  border: 1px solid var(--borde-activo);
+  border-radius: 18px;
+  padding: clamp(24px, 3.4vw, 40px);
+  background: #030303;
+  box-shadow: var(--glow-blanco);     /* glow real, no border de color */
+}
+
+.detalle__cabeza {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.detalle__eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+.detalle__eyebrow b { color: var(--neon); font-weight: 500; }
+
+.detalle__tipo {
+  margin: 22px 0 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+
+.detalle__titulo {
+  margin: 0 0 16px;
+  font-size: clamp(38px, 5.6vw, 64px);
+  font-weight: 700;
+  letter-spacing: -.03em;   /* el tracking negativo lo vuelve editorial */
+  line-height: 1;
+  color: var(--blanco);
+  text-shadow: var(--glow-texto);
+}
+
+.detalle__desc {
+  margin: 0 0 22px;
+  max-width: 58ch;
+  font-size: 16px;
+  color: var(--gris-cuerpo);   /* nunca el neon: no se lee en parrafo largo */
+}
+
+.detalle__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.detalle__tags li {
+  padding: 5px 11px;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--velo);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gris-cuerpo);
+}
+
+/* La metrica es el unico texto dorado de toda la pagina. */
+.metrica {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding-top: 4px;
+}
+.metrica__valor {
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--oro);
+}
+.metrica__etiqueta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+
+/* --- Mockup de navegador -------------------------------------------------- */
+
+.mockup {
+  border: 1px solid var(--borde-activo);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #060606;
+  box-shadow: var(--glow-blanco);
+  margin-bottom: 26px;
+}
+
+.mockup__barra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--borde);
+  background: #0A0A0A;
+}
+
+.mockup__puntos { display: flex; gap: 6px; }
+.mockup__puntos span {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(245, 245, 255, .18);
+}
+
+.mockup__url {
+  flex: 1;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(245, 245, 255, .05);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gris-meta);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mockup__lienzo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #0B0B0B;
+}
+.mockup__lienzo iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  /* El sitio real se dibuja a 1280 y se reduce, para que se vea como
+     escritorio y no como su propio layout movil dentro del marco. */
+  width: 1280px;
+  height: 800px;
+  transform: scale(var(--zoom, .5));
+  transform-origin: 0 0;
+}
+
+/* --- Botones -------------------------------------------------------------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background   var(--t-glow) var(--curva),
+    box-shadow   var(--t-glow) var(--curva),
+    color        var(--t-glow) var(--curva),
+    transform    var(--t-glow) var(--curva);
+}
+
+.boton--oro {
+  background: var(--oro);
+  border-color: var(--oro);
+  color: #100C02;             /* 8.9:1 sobre el oro */
+  box-shadow: var(--glow-oro);
+}
+.boton--oro:hover,
+.boton--oro:focus-visible {
+  background: var(--oro-claro);
+  border-color: var(--oro-claro);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 1px  rgba(240, 204, 90, .95),
+    0 0 14px rgba(240, 204, 90, .55),
+    0 0 42px rgba(240, 204, 90, .24);
+}
+
+.boton[aria-disabled='true'] {
+  background: transparent;
+  border-color: var(--borde);
+  color: var(--gris-meta);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Pie ------------------------------------------------------------------ */
+
+.pie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(40px, 6vw, 72px) 24px clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--borde);
+  text-align: center;
+}
+
+.pie__nota {
+  margin: 0;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--neon);
+}
+
+.pie__legal {
+  margin: 8px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gris-meta);
+}
+.pie__legal a { color: var(--gris-cuerpo); }
+
+/* ============================================================================
+   Responsive
+   ========================================================================= */
+
+@media (max-width: 1180px) {
+  .escena { grid-template-columns: 300px minmax(0, 1fr); }
+  .mazo__escenario { height: 360px; }
+  .tarjeta { height: 250px; }
+}
+
+/* Tableta: dos columnas dejarian el detalle demasiado angosto, asi que se
+   apila. El mazo conserva el 3D, solo que ahora a lo ancho. */
+@media (max-width: 1000px) {
+  .escena {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .mazo { position: static; }
+
+  .mazo__escenario {
+    height: 300px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* Movil: se cae el apilado 3D. Una sola tarjeta plana, flechas + swipe. */
+@media (max-width: 780px) {
+  .escena { gap: 28px; }
+
+  .mazo__escenario {
+    height: 150px;
+    max-width: none;
+    perspective: none;          /* sin 3D: en pantalla chica solo estorba */
+    touch-action: pan-y;
+  }
+
+  .mazo__pila { transform-style: flat; }
+
+  .tarjeta {
+    height: 150px;
+    /* Solo la activa existe visualmente; el resto se descarta del flujo. */
+    transform: translate3d(calc(var(--desliz, 0) * 100%), 0, 0);
+    opacity: var(--opa-movil, 0);
+    pointer-events: none;
+  }
+  .tarjeta--activa { opacity: 1; pointer-events: auto; }
+  .tarjeta:not(.tarjeta--activa) { filter: none; visibility: hidden; }
+
+  .tarjeta__boton { padding: 18px; }
+  .tarjeta__nombre { font-size: 22px; }
+  .tarjeta__fondo { width: 40%; right: -6%; bottom: -20%; }
+
+  .contador { display: none; }
+  .puntos { display: flex; }
+
+  .detalle { padding: 22px 18px; }
+  .detalle__cabeza { flex-direction: column; gap: 10px; }
+  .metrica { flex-direction: column; gap: 2px; align-items: flex-start; }
+  .boton { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 420px) {
+  .cabecera { padding: 16px 18px; }
+  .cabecera__meta { display: none; }
+}
+
+/* ============================================================================
+   Movimiento reducido
+   Se apaga todo lo que se desplaza o late; los cambios de estado siguen
+   siendo perceptibles, pero instantaneos.
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .tarjeta { transition: opacity .001ms; }
+  .envivo::before { animation: none; opacity: 1; }
+  .boton--oro:hover { transform: none; }
+}

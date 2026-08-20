@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cenizo — Restaurante de comida a la brasa</title>
+  <meta name="description" content="Cenizo: cocina a la brasa. Carta del día y reserva de mesa en la misma pantalla." />
+  <meta name="theme-color" content="#14100E" />
+  <link rel="icon" type="image/png" href="../../assets/marcas/cenizo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Cenizo",
+    "servesCuisine": "Parrilla y brasa",
+    "priceRange": "$$",
+    "acceptsReservations": "True",
+    "address": { "@type": "PostalAddress", "streetAddress": "Calle del Fuego 12", "addressLocality": "Medellín" },
+    "openingHours": "Ma-Do 12:30-23:30"
+  }
+  </script>
+</head>
+<body>
+
+<a class="saltar" href="#carta">Saltar a la carta</a>
+
+<header class="barra">
+  <img class="barra__logo" src="../../assets/marcas/cenizo/logo.png" alt="Cenizo" />
+  <nav class="barra__nav">
+    <a href="#carta">Carta</a>
+    <a href="#reservar">Reservar</a>
+  </nav>
+  <a class="volver" href="../../">← Portafolio</a>
+</header>
+
+<section class="hero">
+  <img class="hero__fondo" src="../../assets/marcas/cenizo/banner.png" alt="Cenizo — restaurante, comida a la brasa" />
+  <p class="hero__horario"><span class="brasa"></span> Hoy abierto hasta las 23:30</p>
+</section>
+
+<main class="doble" id="carta">
+
+  <section class="carta" aria-labelledby="carta-titulo">
+    <div class="seccion__cabeza">
+      <h2 id="carta-titulo">La carta</h2>
+      <div class="filtros" role="group" aria-label="Filtrar la carta">
+        <button type="button" class="chip" data-filtro="todo" aria-pressed="true">Todo</button>
+        <button type="button" class="chip" data-filtro="brasa" aria-pressed="false">A la brasa</button>
+        <button type="button" class="chip" data-filtro="entrada" aria-pressed="false">Entradas</button>
+        <button type="button" class="chip" data-filtro="postre" aria-pressed="false">Postres</button>
+      </div>
+    </div>
+    <ul class="platos" id="platos"><!-- generado desde js/main.js --></ul>
+    <p class="carta__nota" id="carta-nota" aria-live="polite"></p>
+  </section>
+
+  <aside class="reserva" id="reservar" aria-labelledby="reserva-titulo">
+    <div class="reserva__caja">
+      <h2 id="reserva-titulo">Reservar mesa</h2>
+      <p class="reserva__bajada">Sin llamadas. Confirmamos al instante.</p>
+
+      <form class="formulario" id="formulario" novalidate>
+        <label>
+          <span>Nombre</span>
+          <input type="text" name="nombre" required autocomplete="name" />
+        </label>
+
+        <div class="formulario__par">
+          <label>
+            <span>Personas</span>
+            <select name="personas" id="personas"></select>
+          </label>
+          <label>
+            <span>Día</span>
+            <select name="dia" id="dia"></select>
+          </label>
+        </div>
+
+        <fieldset class="horas">
+          <legend>Hora</legend>
+          <div class="horas__rejilla" id="horas"></div>
+        </fieldset>
+
+        <button class="boton" type="submit">Confirmar reserva</button>
+        <p class="formulario__estado" id="estado" role="status"></p>
+      </form>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="pie">
+  <p><strong>Cenizo</strong> · Calle del Fuego 12, Medellín · +57 300 000 0000</p>
+  <p class="pie__demo">Negocio ficticio — demostración del portafolio de <a href="../../">Just King</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horno Cinco — Panadería artesanal por hornada</title>
+  <meta name="description" content="Horno Cinco: pan artesanal, hecho con pasión. Se encarga por hornada, no por stock." />
+  <meta name="theme-color" content="#2E1B0F" />
+  <link rel="icon" type="image/png" href="../../assets/marcas/horno-cinco/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<a class="saltar" href="#hornadas">Saltar a las hornadas</a>
+
+<header class="barra">
+  <img class="barra__logo" src="../../assets/marcas/horno-cinco/logo.png" alt="Horno Cinco" />
+  <p class="barra__estado" id="barra-estado"></p>
+  <a class="volver" href="../../">← Portafolio</a>
+</header>
+
+<section class="hero">
+  <img class="hero__img" src="../../assets/marcas/horno-cinco/banner.jpg" alt="Horno Cinco — panadería artesanal. Pan artesanal, hecho con pasión." />
+</section>
+
+<main>
+
+  <section class="explica">
+    <p class="eyebrow">Cómo funciona</p>
+    <h2>No vendemos stock. Vendemos hornadas.</h2>
+    <p class="explica__texto">
+      Cada tanda entra al horno a una hora fija y sale con un número exacto de
+      piezas. Cuando el cupo llega a cero, la hornada se cierra: no hay
+      sobreproducción y no hay pan de ayer.
+    </p>
+  </section>
+
+  <section class="hornadas" id="hornadas" aria-labelledby="hornadas-titulo">
+    <h2 id="hornadas-titulo" class="visualmente-oculto">Hornadas de hoy</h2>
+    <ul class="hornadas__lista" id="lista"><!-- generado desde js/main.js --></ul>
+  </section>
+
+  <section class="encargo" id="encargo" aria-labelledby="encargo-titulo">
+    <div class="encargo__caja">
+      <p class="eyebrow">Tu encargo</p>
+      <h2 id="encargo-titulo" data-vacio="Elige una hornada arriba">Elige una hornada arriba</h2>
+      <div id="encargo-cuerpo" hidden>
+        <p class="encargo__linea" id="encargo-linea"></p>
+        <div class="cantidad">
+          <button type="button" class="cantidad__btn" id="menos" aria-label="Quitar una pieza">−</button>
+          <output class="cantidad__valor" id="cantidad" for="menos mas">1</output>
+          <button type="button" class="cantidad__btn" id="mas" aria-label="Agregar una pieza">+</button>
+        </div>
+        <button type="button" class="boton" id="reservar">Reservar del horno</button>
+        <p class="encargo__aviso" id="encargo-aviso" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <p><strong>Horno Cinco</strong> · Masa madre natural · Sin conservantes artificiales</p>
+  <p class="pie__demo">Negocio ficticio — demostración del portafolio de <a href="../../">Just King</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

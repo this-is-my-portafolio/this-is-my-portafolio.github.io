@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ánima Studio — Tienda de ropa de autor</title>
+  <meta name="description" content="Ánima Studio: piezas que visten tu esencia. Catálogo editorial por colección." />
+  <meta name="theme-color" content="#1E0D2E" />
+  <link rel="icon" type="image/jpeg" href="../../assets/marcas/anima-studio/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<a class="saltar" href="#catalogo">Saltar al catálogo</a>
+
+<header class="barra">
+  <img class="barra__logo" src="../../assets/marcas/anima-studio/logo.jpg" alt="Ánima Studio" />
+  <a class="volver" href="../../">← Portafolio</a>
+</header>
+
+<section class="hero">
+  <img class="hero__img" src="../../assets/marcas/anima-studio/banner.jpg" alt="Ánima Studio — tienda, piezas que visten tu esencia" />
+</section>
+
+<main id="catalogo">
+
+  <div class="intro">
+    <p class="intro__eyebrow">Colección permanente</p>
+    <h1 class="intro__titulo">Piezas que visten tu esencia</h1>
+    <p class="intro__texto">
+      Cada pieza se produce en tandas cortas. Lo que ves es lo que hay: cuando
+      una talla se va, se va.
+    </p>
+  </div>
+
+  <nav class="filtros" aria-label="Filtrar por colección">
+    <button type="button" class="filtro" data-col="todo" aria-pressed="true">Todo</button>
+    <button type="button" class="filtro" data-col="ritual" aria-pressed="false">Ritual</button>
+    <button type="button" class="filtro" data-col="umbra" aria-pressed="false">Umbra</button>
+    <button type="button" class="filtro" data-col="lumen" aria-pressed="false">Lumen</button>
+  </nav>
+
+  <p class="conteo" id="conteo" aria-live="polite"></p>
+
+  <ul class="rejilla" id="rejilla"><!-- generado desde js/main.js --></ul>
+
+</main>
+
+<footer class="pie">
+  <p><strong>Ánima Studio</strong> · Envíos a todo el país · @anima.studio</p>
+  <p class="pie__demo">Negocio ficticio — demostración del portafolio de <a href="../../">Just King</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

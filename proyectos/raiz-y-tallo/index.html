@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raíz y Tallo — Floristería con entrega el mismo día</title>
+  <meta name="description" content="Raíz y Tallo: conectamos emociones, cultivamos recuerdos. Ramos por ocasión con entrega el mismo día." />
+  <meta name="theme-color" content="#F7F3EC" />
+  <link rel="icon" type="image/png" href="../../assets/marcas/raiz-y-tallo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<a class="saltar" href="#ramos">Saltar a los ramos</a>
+
+<header class="barra">
+  <img class="barra__logo" src="../../assets/marcas/raiz-y-tallo/logo.png" alt="Raíz y Tallo" />
+  <p class="barra__aviso" id="barra-aviso"></p>
+  <a class="volver" href="../../">← Portafolio</a>
+</header>
+
+<section class="hero">
+  <img class="hero__img" src="../../assets/marcas/raiz-y-tallo/banner.jpg" alt="Raíz y Tallo — floristería. Conectamos emociones, cultivamos recuerdos." />
+</section>
+
+<main>
+
+  <section class="ocasiones" id="ramos" aria-labelledby="ocasiones-titulo">
+    <div class="seccion__cabeza">
+      <p class="eyebrow">Elige por ocasión</p>
+      <h2 id="ocasiones-titulo">¿Para qué es el ramo?</h2>
+      <p class="seccion__bajada">
+        Nadie busca "lilium blanco". Buscan un cumpleaños, una disculpa, un
+        gracias. Así está ordenado el catálogo.
+      </p>
+    </div>
+
+    <nav class="ocasiones__tabs" aria-label="Ocasiones">
+      <button type="button" class="tab" data-oc="todo" aria-pressed="true">Todas</button>
+      <button type="button" class="tab" data-oc="celebrar" aria-pressed="false">Celebrar</button>
+      <button type="button" class="tab" data-oc="acompanar" aria-pressed="false">Acompañar</button>
+      <button type="button" class="tab" data-oc="gracias" aria-pressed="false">Dar las gracias</button>
+      <button type="button" class="tab" data-oc="amor" aria-pressed="false">Amor</button>
+    </nav>
+
+    <ul class="ramos" id="ramos-lista"><!-- generado desde js/main.js --></ul>
+  </section>
+
+  <section class="entrega" id="entrega" aria-labelledby="entrega-titulo">
+    <div class="entrega__caja">
+      <p class="eyebrow">Entrega</p>
+      <h2 id="entrega-titulo">¿Cuándo llega?</h2>
+      <p class="entrega__reloj" id="reloj"></p>
+
+      <fieldset class="franjas">
+        <legend class="visualmente-oculto">Franja de entrega</legend>
+        <div class="franjas__lista" id="franjas"></div>
+      </fieldset>
+
+      <p class="entrega__nota">
+        Las franjas que ya no alcanzan para hoy se desactivan solas: preparar
+        un ramo toma 90 minutos desde que entra el pedido.
+      </p>
+
+      <div class="resumen" id="resumen" aria-live="polite"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <p><strong>Raíz y Tallo</strong> · Calle de los Tilos 8 · @raizytallo.floristeria</p>
+  <p class="pie__demo">Negocio ficticio — demostración del portafolio de <a href="../../">Just King</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
